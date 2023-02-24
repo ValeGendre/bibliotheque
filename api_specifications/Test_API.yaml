@@ -1,0 +1,49 @@
+openapi: '3.0.2'
+info:
+  title: Books
+  version: '0.1'
+servers:
+  - url: http://localhost:3000
+
+
+
+paths:
+  /: 
+    get:
+      responses:
+        '200':
+          description: OK
+          content:
+            plain/text:
+              schema:
+                type: string
+
+  /books:
+    get:
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BookList'
+
+components:
+  schemas:
+    Book:
+      type: object
+      properties:
+        name:
+          type: string
+        author:
+          type: string
+        uuid:
+          type: integer
+    
+    BookList:
+      type: object
+      properties:
+        books:
+          type: array
+          items:
+            $ref: '#/components/schemas/Book'
